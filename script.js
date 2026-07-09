@@ -1,46 +1,80 @@
-// Default language
-let currentLang = 'en';
+const DEFAULT_LANG = 'en';
+let currentLang = DEFAULT_LANG;
 
-// Load translations from JSON
-async function loadTranslations(lang) {
-  try {
-    const res = await fetch(`translations/${lang}.json`);
-    if (!res.ok) throw new Error(`Failed to load ${lang} translations`);
-    return await res.json();
-  } catch (err) {
-    console.warn(`Translation load error for ${lang}:`, err);
-    return {};
-  }
+// Fetch JSON safely
+async function fetchJSON(path) {
+  const res = await fetch(path);
+  if (!res.ok) throw new Error(`Failed to load ${path}`);
+  return res.json();
 }
 
-// Apply translations to DOM
-async function setLanguage(lang) {
+// Load language, merge with English defaults, and render
+async function loadAndApplyLanguage(lang) {
   currentLang = lang;
   document.documentElement.lang = lang;
 
-  // Update active button
+  // Update active button state
   document.querySelectorAll('.lang-switcher button').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
 
-  const translations = await loadTranslations(lang);
-  
+  // Load base (English) and target translations in parallel
+  const [base, trans] = await Promise.all([
+    fetchJSON(`translations/${DEFAULT_LANG}.json`),
+    fetchJSON(`translations/${lang}.json`).catch(() => ({})) // Returns {} if file missing
+  ]);
+
+  // Merge: target overrides base, missing keys fall back to base
+  const merged = {
+    name: trans.name || base.name,
+    bio: trans.bio || base.bio,
+    social: {}
+  };
+
+  // Merge social links safely
+  for (const [key, baseLink] of Object.entries(base.social)) {
+    merged.social[key] = {
+      name: trans.social?.[key]?.name || baseLink.name,
+      url: trans.social?.[key]?.url || baseLink.url
+    };
+  }
+
+  renderSocialLinks(merged.social);
+  applyTextTranslations(trans);
+}
+
+// Dynamically render social links
+function renderSocialLinks(socialData) {
+  const container = document.getElementById('social-links');
+  container.innerHTML = ''; // Clear previous
+
+  for (const [key, data] of Object.entries(socialData)) {
+    const a = document.createElement('a');
+    a.href = data.url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.className = 'social-link';
+    a.dataset.socialKey = key;
+    a.textContent = data.name;
+    container.appendChild(a);
+  }
+}
+
+// Apply text translations to data-i18n elements
+function applyTextTranslations(trans) {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
     const keys = key.split('.');
-    let value = translations;
-    for (const k of keys) {
-      value = value?.[k];
-      if (value === undefined) break;
-    }
-    if (value !== undefined) el.textContent = value;
+    let value = trans;
+    for (const k of keys) value = value?.[k];
+    if (value) el.textContent = value;
   });
 }
 
 // Initialize
-document.addEventListener('DOMContentLoaded', () => setLanguage('en'));
+document.addEventListener('DOMContentLoaded', () => loadAndApplyLanguage('en'));
 
 // Bind language buttons
 document.querySelectorAll('.lang-switcher button').forEach(btn => {
-  btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+  btn.addEventListener('click', () => loadAndApplyLanguage(btn.dataset.lang));
 });

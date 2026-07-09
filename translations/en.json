@@ -2,8 +2,9 @@
   "name": "Andres Belaza",
   "bio": "I'm a Data Scientist passionate about green tech, ethical AI, language, physics, science, and sustainability. In my previous career, I worked as a Computational Physicist in the field of Econophysics. Here you can find my social links!",
   "social": {
-    "github": "AMBelaza",
-    "Bluesky": "@fotonacelerado.eurosky.social",
-    "linkedin": "ambelaza"
+    "github": { "name": "GitHub", "url": "https://github.com/AMBelaza" },
+    "bluesky": { "name": "Bluesky", "url": "https://bsky.app/profile/@fotonacelerado.eurosky.social" },
+    "linkedin": { "name": "LinkedIn", "url": "https://linkedin.com/in/ambelaza" },
+    "reddit": { "name": "Reddit", "url": "https://reddit.com/u/AndoXCI" }
   }
 }
