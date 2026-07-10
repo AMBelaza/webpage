@@ -1,11 +1,11 @@
 :root {
   --primary-green: #2ecc71;
-  --dark-green: #27ae60;
-  --light-green: #e8f5e9;
-  --text-color: #333;
-  --bg-color: #f4f7f6;
-  --card-bg: #ffffff;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --medium-green: #27ae60;
+  --dark-green: #1b4332;
+  --text-color: #e0e0e0;
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -43,8 +43,8 @@ body {
 
 .profile-pic:hover { transform: scale(1.05); }
 
-h1 { color: var(--dark-green); margin-bottom: 8px; }
-.bio { color: #555; line-height: 1.6; margin-bottom: 24px; }
+h1 { color: var(--medium-green); margin-bottom: 8px; }
+.bio { color: #aaa; line-height: 1.6; margin-bottom: 24px; }
 
 .social-links {
   display: flex;
@@ -55,8 +55,8 @@ h1 { color: var(--dark-green); margin-bottom: 8px; }
 
 .social-link {
   display: block;
-  background: var(--light-green);
-  color: var(--dark-green);
+  background: var(--dark-green);
+  color: var(--medium-green);
   padding: 14px;
   border-radius: 10px;
   text-decoration: none;
@@ -94,3 +94,5 @@ h1 { color: var(--dark-green); margin-bottom: 8px; }
   background: var(--primary-green);
   color: white;
 }
+
+
