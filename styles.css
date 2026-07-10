@@ -95,4 +95,24 @@ h1 { color: var(--medium-green); margin-bottom: 8px; }
   color: white;
 }
 
+.languages {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+  justify-content: center;
+  align-items: center;
+}
 
+.lang-flag {
+  font-size: 2rem;
+  line-height: 1;
+  cursor: default;
+  /* Subtle blend with the dark background so it doesn't pop harshly */
+  filter: brightness(0.95) saturate(0.85);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.lang-flag:hover {
+  transform: scale(1.15);
+  filter: brightness(1) saturate(1);
+}

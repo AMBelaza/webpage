@@ -71,10 +71,25 @@ function applyTextTranslations(trans) {
   });
 }
 
-// Initialize
-document.addEventListener('DOMContentLoaded', () => loadAndApplyLanguage('en'));
+// Just the flags, no extra data needed
+const userLanguages = ['🇪🇸', '🇺🇸', '🇳🇱'];
 
-// Bind language buttons
-document.querySelectorAll('.lang-switcher button').forEach(btn => {
-  btn.addEventListener('click', () => loadAndApplyLanguage(btn.dataset.lang));
+function renderLanguages() {
+  const container = document.getElementById('languages');
+  if (!container) return;
+  
+  container.innerHTML = ''; // Clear previous
+  userLanguages.forEach(flag => {
+    const span = document.createElement('span');
+    span.className = 'lang-flag';
+    span.textContent = flag;
+    span.title = flag; // Keeps it accessible without visible text
+    container.appendChild(span);
+  });
+}
+
+// Make sure it's called on load
+document.addEventListener('DOMContentLoaded', () => {
+  renderLanguages();
+  loadAndApplyLanguage('en');
 });
