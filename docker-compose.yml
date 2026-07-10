@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    ports:
+      - "${HOST_PORT:-8000}:8080"
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/cache/nginx
+      - /var/run
+    mem_limit: 64m
+    memswap_limit: 64m
