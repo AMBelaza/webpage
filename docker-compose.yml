@@ -1,6 +1,7 @@
 services:
   web:
     build: .
+    container_name: webpage
     ports:
       - "${HOST_PORT:-8000}:8080"
     restart: unless-stopped
