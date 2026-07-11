@@ -71,6 +71,16 @@ function applyTextTranslations(trans) {
   });
 }
 
+// Map of flag emoji → language code
+const FLAG_TO_LANG = {
+  '🇪🇸': 'es',
+  '🇺🇸': 'en',
+  '🇳🇱': 'nl'
+};
+
+// Valid languages that have translation files
+const VALID_LANGUAGES = ['en', 'es'];
+
 // Just the flags, no extra data needed
 const userLanguages = ['🇪🇸', '🇺🇸', '🇳🇱'];
 
@@ -83,7 +93,21 @@ function renderLanguages() {
     const span = document.createElement('span');
     span.className = 'lang-flag';
     span.textContent = flag;
-    span.title = flag; // Keeps it accessible without visible text
+    span.title = flag;
+
+    const lang = FLAG_TO_LANG[flag];
+    const isValid = VALID_LANGUAGES.includes(lang);
+
+    if (isValid) {
+      span.dataset.lang = lang;
+      span.classList.add('valid');
+      span.addEventListener('click', () => {
+        loadAndApplyLanguage(lang);
+      });
+    } else {
+      span.classList.add('invalid');
+    }
+
     container.appendChild(span);
   });
 }
