@@ -44,7 +44,7 @@ body {
 .profile-pic:hover { transform: scale(1.05); }
 
 h1 { color: var(--medium-green); margin-bottom: 8px; }
-.bio { color: #aaa; line-height: 1.6; margin-bottom: 24px; }
+.bio { color: #aaa; line-height: 1.6; margin-bottom: 24px; white-space: pre-line; }
 
 .social-links {
   display: flex;
