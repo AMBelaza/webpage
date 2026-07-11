@@ -92,4 +92,12 @@ function renderLanguages() {
 document.addEventListener('DOMContentLoaded', () => {
   renderLanguages();
   loadAndApplyLanguage('en');
+
+  // Attach click handlers to language switcher buttons
+  document.querySelectorAll('.lang-switcher button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      loadAndApplyLanguage(btn.dataset.lang);
+    });
+  });
 });
+
