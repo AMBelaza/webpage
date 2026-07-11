@@ -1,7 +1,8 @@
 {
   "name": "Andres M. Belaza",
-  "bio": "Data Scientist | NLP & Linguistics | Mobility Tech | PhD in Computational Physics & Econophysics\n\nFrom modeling social dynamics in physics to building ML models, I’v always been fascinated by how systems communicate and evolve.\n\nFormer automotive/mobility Data Scientist. Now focused on NLP, responsible AI, and sustainable machine learning.\n\nPassionate about ethical and green tech and Physics",
+  "bio": "Data Scientist | NLP & Linguistics | Mobility Tech | PhD in Computational Physics & Econophysics\n\nFrom modeling social dynamics in physics to building ML models, I’v always been fascinated by how systems communicate and evolve.\n\nFormer automotive/mobility Data Scientist. Now focused on NLP.\n\nEthical AI and sustainable machine learning.\n\nPassionate green tech and Physics",
   "social": {
+    "mail": {"name": "Email", "url":"mailto:andres@belaza.eu"},
     "github": { "name": "GitHub", "url": "https://github.com/AMBelaza" },
     "bluesky": { "name": "Bluesky", "url": "https://bsky.app/profile/fotonacelerado.eurosky.social" },
     "linkedin": { "name": "LinkedIn", "url": "https://linkedin.com/in/ambelaza" },
