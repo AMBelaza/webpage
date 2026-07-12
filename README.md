@@ -4,11 +4,10 @@ A lightweight, containerized personal portfolio site featuring multi-language su
 
 ## Features
 
-- **Static & Lightweight** — Pure HTML, CSS, and vanilla JS. No frameworks or build steps.
+- **Static & Lightweight** — Pure HTML, CSS, and vanilla JS.
 - **Multi-language Support** — JSON-based translations with English as the fallback language. Supports English and Spanish (Dutch flag rendered but no translation file yet).
 - **Containerized** — Runs via Docker using a minimal `nginxinc/nginx-unprivileged:1.27-alpine` image.
 - **Dark Theme** — Green-accented dark UI with smooth hover animations.
-- **Responsive** — Mobile-friendly layout that adapts to any screen size.
 
 ## Project Structure
 
@@ -24,22 +23,8 @@ A lightweight, containerized personal portfolio site featuring multi-language su
 │   └── profile.jpg     # Profile photo
 ├── Dockerfile          # Nginx container definition
 ├── docker-compose.yml  # Service configuration
-└── .env                # Environment variables (e.g. HOST_PORT)
+└── .env                # Environment variables (e.g. HOST_PORT) #Only used during develop
 ```
-
-## Getting Started
-
-### Docker Configuration
-
-The Docker setup includes security-conscious defaults:
-
-| Setting          | Value              | Description                          |
-|------------------|--------------------|--------------------------------------|
-| `read_only`      | `true`             | Read-only filesystem                 |
-| `mem_limit`      | `64m`              | Memory cap                           |
-| `memswap_limit`  | `64m`              | Swap cap                             |
-| `restart`        | `unless-stopped`   | Auto-restart policy                  |
-| `tmpfs`          | `/tmp`, etc.       | Writable ephemeral directories       |
 
 ### Custom Port
 
@@ -48,6 +33,7 @@ Override the host port by editing `.env`:
 ```env
 HOST_PORT=8080
 ```
+Note: only used on development, on production there is no bridge to host
 
 ## Adding a Language
 
