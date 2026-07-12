@@ -2,8 +2,8 @@ services:
   web:
     build: .
     container_name: webpage
-    ports:
-      - "${HOST_PORT:-8000}:8080"
+    #ports:
+    #  - "${HOST_PORT:-8000}:8080"
     restart: unless-stopped
     read_only: true
     tmpfs:
@@ -12,3 +12,10 @@ services:
       - /var/run
     mem_limit: 64m
     memswap_limit: 64m
+    networks:
+      - pangolin-net 
+
+networks:
+  pangolin-net: 
+    name: pangolin-net
+    external: true
